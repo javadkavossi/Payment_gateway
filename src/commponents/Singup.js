@@ -3,6 +3,7 @@ import { validate } from './validate';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { notify } from './toast';
+import styles from "./SingUp.module.css";
 const Singup = () => {
 
 const [data, setData] = useState({
@@ -58,36 +59,70 @@ const changeHandler= event => {
   
 
     return (
-        <div>
-            <form onSubmit={submitHnd}>
-                <h2>Sing up</h2>
-                <div>
+        <div className={styles.container}>
+            <form onSubmit={submitHnd} className={styles.formContainer}>
+                <h2 className={styles.header}>Sing up</h2>
+                <div className={styles.formField}>
                     <label>Nmae</label>
-                    <input type="text" name="name" value={data.name} onChange={changeHandler} onFocus= {focusHandler}></input>
+                    <input 
+                       className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
+                     type="text"
+                     name="name" 
+                     value={data.name}
+                     onChange={changeHandler} 
+                     onFocus= {focusHandler}></input>
                     {errors.name && touched.name &&<span>{errors.name}</span>}
                 </div>
-                <div>
+                <div className={styles.formField}>
                     <label>Email</label>
-                    <input type="text" name="email" value={data.email} onChange={changeHandler} onFocus= {focusHandler}></input>
+                    <input
+                    className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
+                     type="text"
+                     name="email"
+                     value={data.email}
+                     onChange={changeHandler}
+                     onFocus= {focusHandler}></input>
                     {errors.email && touched.email && <span>{errors.email}</span>}
                 </div>
-                <div>
+                <div className={styles.formField}>
                     <label>password</label>
-                    <input type="password" name="password" value={data.password} onChange={changeHandler} onFocus= {focusHandler}></input>
+                    <input
+                    className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
+
+                     type="password"
+                     name="password"
+                     value={data.password}
+                     onChange={changeHandler}
+                     onFocus= {focusHandler}></input>
                     {errors.password && touched.password && <span>{errors.password}</span>}
                 </div>
-                <div>
+                <div className={styles.formField}>
                     <label>ConfiramPassword</label>
-                    <input type="password" name="password2" value={data.password2} onChange={changeHandler} onFocus= {focusHandler}></input>
+                    <input
+                    className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
+
+                     type="password"
+                     name="password2"
+                     value={data.password2}
+                     onChange={changeHandler}
+                     onFocus= {focusHandler}></input>
                     {errors.password2 && touched.password2 && <span>{errors.password2}</span>}
                 </div>
                 
-                <div>
+                <div className={styles.formField}>
+                    <div className={styles.checkBoxContainer}>
                     <label>i accet terms of privacy policy </label>
-                    <input type="checkbox" name="isAccepted" value={data.isAccepted } onChange={changeHandler} onFocus= {focusHandler}></input>
+                    <input
+                    className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
+                     type="checkbox"
+                     name="isAccepted"
+                     value={data.isAccepted }
+                     onChange={changeHandler} onFocus= {focusHandler}></input>
+                     </div>
                     {errors.isAccepted && touched.isAccepted && <span>{errors.isAccepted}</span>}               
                 </div>
-                <div>
+                <div className={styles.formButtons}>
+                    <a href='#'></a>
                     <button type='submit'>Sing Up</button>
                 </div>
             </form>
