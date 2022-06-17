@@ -5,24 +5,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import { notify } from './toast';
 import styles from "./SingUp.module.css";
 import { Link } from 'react-router-dom';
-
-
-const Singup = () => {
+const Login = () => {
 
 const [data, setData] = useState({
 
-    name:"",
+
     email:"",
     password:"",
-    password2:"",
-    //confiramPassword:"",                                                                                       
-    isAccepted: false
+ 
 
 });
 const [errors, setErrors] = useState({});
 const [touched, setTouched] = useState({});
 useEffect(()=> {
- setErrors(validate(data , "singup"))
+ setErrors(validate(data , "login"))
     console.log(errors)
 }, [data ,touched])
 
@@ -40,7 +36,7 @@ const changeHandler= event => {
     }
 
    const submitHnd= event=>{
-   
+     
        event.preventDefault();
        
        if (!Object.keys(errors).length){
@@ -49,12 +45,10 @@ const changeHandler= event => {
         notify("invalid data" , "error")
 
            setTouched({
-               name: true,
+              
                email:true,
                password:true,
-               //confiramPassword:true,
-               password2:true,
-               isAccepted:true,
+              
               
            })
        }
@@ -64,18 +58,7 @@ const changeHandler= event => {
     return (
         <div className={styles.container}>
             <form onSubmit={submitHnd} className={styles.formContainer}>
-                <h2 className={styles.header}>Sing up</h2>
-                <div className={styles.formField}>
-                    <label>Nmae</label>
-                    <input 
-                       className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
-                     type="text"
-                     name="name" 
-                     value={data.name}
-                     onChange={changeHandler} 
-                     onFocus= {focusHandler}></input>
-                    {errors.name && touched.name &&<span>{errors.name}</span>}
-                </div>
+                <h2 className={styles.header}>Login</h2>
                 <div className={styles.formField}>
                     <label>Email</label>
                     <input
@@ -99,34 +82,11 @@ const changeHandler= event => {
                      onFocus= {focusHandler}></input>
                     {errors.password && touched.password && <span>{errors.password}</span>}
                 </div>
-                <div className={styles.formField}>
-                    <label>ConfiramPassword</label>
-                    <input
-                    className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
-
-                     type="password"
-                     name="password2"
-                     value={data.password2}
-                     onChange={changeHandler}
-                     onFocus= {focusHandler}></input>
-                    {errors.password2 && touched.password2 && <span>{errors.password2}</span>}
-                </div>
-                
-                <div className={styles.formField}>
-                    <div className={styles.checkBoxContainer}>
-                    <label>i accet terms of privacy policy </label>
-                    <input
-                    className={(errors.name && touched.name) ? styles.uncompleted : styles.formInput} 
-                     type="checkbox"
-                     name="isAccepted"
-                     value={data.isAccepted }
-                     onChange={changeHandler} onFocus= {focusHandler}></input>
-                     </div>
-                    {errors.isAccepted && touched.isAccepted && <span>{errors.isAccepted}</span>}               
-                </div>
+             
                 <div className={styles.formButtons}>
-                    <Link to="/login">login</Link>
-                    <button type='submit'>Sing Up</button>
+                <Link to="/singup">Sing Up</Link>
+
+                    <button type='submit'>Login</button>
                 </div>
             </form>
             <ToastContainer />
@@ -135,4 +95,4 @@ const changeHandler= event => {
     );
 };
 
-export default Singup;
+export default Login;

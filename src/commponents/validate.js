@@ -1,11 +1,6 @@
-export const validate = data =>{
+export const validate = (data,type) =>{
  const errors = {};
- if (!data.name.trim()) {
-     errors.name = "username required"
-
- }else{
-     delete errors.name 
- } 
+ 
 if (!data.email){
     errors.email = "Email required"
 
@@ -24,15 +19,7 @@ else {
     delete errors.password
 }
 
-if (!data.password2){
-    errors.password2="confiram pass word"
-}else if(data.password2 !== data.password){
-    errors.password2="password is not mach !"
-}
 
-else {
-    delete errors.password2
-}
 //if(!data.confirmPassword){
 //errors.confirmPassword="Confrim the password"
   
@@ -42,13 +29,35 @@ else {
     //    errors.confirmPassword = "password do not matc"    
    //}
     //else {
-            delete errors.confirmPassword
+            //delete errors.confirmPassword
   //      }
 
-if(data.isAccepted) {
+
+
+    if(type === "singup"){
+
+        if (!data.name.trim()) {
+            errors.name = "username required"
+       
+        }else{
+            delete errors.name 
+        } 
+        if (!data.password2){
+            errors.password2="confiram pass word"
+        }else if(data.password2 !== data.password){
+            errors.password2="password is not mach !"
+        }
+        
+        else {
+            delete errors.password2
+        }
+
+
+        if(data.isAccepted) {
             delete errors.isAccepted
         }else{
             errors.isAccepted = "Accept our requlation "
         }
+    }
 return errors;
 }
