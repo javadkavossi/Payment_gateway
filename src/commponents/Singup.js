@@ -4,6 +4,9 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { notify } from './toast';
 import styles from "./SingUp.module.css";
+import { Link } from 'react-router-dom';
+
+
 const Singup = () => {
 
 const [data, setData] = useState({
@@ -19,7 +22,7 @@ const [data, setData] = useState({
 const [errors, setErrors] = useState({});
 const [touched, setTouched] = useState({});
 useEffect(()=> {
- setErrors(validate(data))
+ setErrors(validate(data , "singup"))
     console.log(errors)
 }, [data ,touched])
 
@@ -122,7 +125,7 @@ const changeHandler= event => {
                     {errors.isAccepted && touched.isAccepted && <span>{errors.isAccepted}</span>}               
                 </div>
                 <div className={styles.formButtons}>
-                    <a href='#'></a>
+                    <Link to="/login">login</Link>
                     <button type='submit'>Sing Up</button>
                 </div>
             </form>
